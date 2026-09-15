@@ -1,14 +1,50 @@
-# Locks Tracker Releases
+<p align="center">
+  <a href="https://sault-ste-marie-locks.github.io/Sault-Locks-Tracker-Releases/"><img src="https://i.imgur.com/1RdrJVn.png" alt="Locks Tracker" width="100%"></a>
+</p>
 
-Official user-facing downloads for **Locks Tracker**.
+<p align="center">
+  <strong>Official downloads for Locks Tracker</strong>
+</p>
 
-Use the Releases section for:
+<p align="center">
+  <a href="https://sault-ste-marie-locks.github.io/Sault-Locks-Tracker-Releases/"><img src="https://img.shields.io/badge/Download_for-Windows-0078D4?style=for-the-badge&logo=windows11&logoColor=white" alt="Download for Windows"></a>&nbsp;&nbsp;
+  <a href="https://sault-ste-marie-locks.github.io/Sault-Locks-Tracker-Releases/"><img src="https://img.shields.io/badge/Download_for-macOS-24292F?style=for-the-badge&logo=apple&logoColor=white" alt="Download for macOS"></a>
+</p>
 
-- Windows installer
-- Windows portable build
-- macOS DMG
-- macOS ZIP
+---
 
-Automatic updater payloads are kept separately in `Sault-Ste-Marie-Locks/Sault-Locks-Tracker-Updates` so this download page stays clean.
+## About Locks Tracker
 
-Application source is maintained at `Sault-Ste-Marie-Locks/Sault-Locks-Open-Source`.
+Locks Tracker is a simple desktop application designed to make recording and managing lock traffic easier.
+
+It provides one place to record vessel activity, review previous records, manage vessel information, and create reports.
+
+## Getting Started
+
+Download the version for your computer using the buttons above.
+
+**Windows**
+Download and run the Windows installer, then follow the installation steps.
+
+**macOS**
+Download the macOS version, open the DMG, and install Locks Tracker.
+
+## Updates
+
+Locks Tracker includes support for application updates, so you can stay on the latest available version without needing to reinstall the application every time.
+
+## Need a Fresh Copy?
+
+If you are installing Locks Tracker on a new computer or need to reinstall it, simply download the latest version above.
+
+### Download Website
+
+If you are unsure which button to use, you can also use the official download page:
+
+[Download Locks Tracker](https://sault-ste-marie-locks.github.io/Sault-Locks-Tracker-Releases/)
+
+---
+
+<p align="center">
+  <sub>Locks Tracker for Windows and macOS</sub>
+</p>
