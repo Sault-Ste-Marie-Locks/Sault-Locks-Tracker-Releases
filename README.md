@@ -37,6 +37,12 @@ Locks Tracker includes support for application updates, so you can stay on the l
 
 If you are installing Locks Tracker on a new computer or need to reinstall it, simply download the latest version above.
 
+### Download Website
+
+If you are unsure which button to use, you can also use the official download page:
+
+[Download Locks Tracker](https://sault-ste-marie-locks.github.io/Sault-Locks-Tracker-Releases/)
+
 ---
 
 <p align="center">
