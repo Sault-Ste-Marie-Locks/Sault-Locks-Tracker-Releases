@@ -8,9 +8,16 @@
   <title>Locks Tracker Downloads</title>
   <style>
     :root{
-      --bg:#f4f7f7; --surface:#fff; --soft:#f8fafa; --text:#182022;
-      --muted:#6d787b; --border:#dfe6e6; --accent:#157a7d; --hover:#106669;
+      --bg:#f4f7f7;
+      --surface:#fff;
+      --soft:#f7f9f9;
+      --text:#182022;
+      --muted:#6d787b;
+      --border:#dfe6e6;
+      --accent:#157a7d;
+      --hover:#106669;
       --shadow:0 18px 48px rgba(24,45,47,.09);
+      --header-shadow:0 6px 18px rgba(24,45,47,.04);
     }
     *{box-sizing:border-box}
     html{-webkit-text-size-adjust:100%}
@@ -19,34 +26,54 @@
       font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
       background:radial-gradient(circle at 50% -110px,rgba(21,122,125,.08),transparent 360px),var(--bg);
     }
-    header{background:rgba(255,255,255,.93);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
+
+    header{
+      position:sticky; top:0; z-index:10;
+      background:rgba(255,255,255,.88);
+      border-bottom:1px solid rgba(223,230,230,.9);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      box-shadow:var(--header-shadow);
+    }
     .header-inner{
-      width:min(1000px,calc(100% - 32px));min-height:70px;margin:auto;
-      display:flex;align-items:center;justify-content:space-between;gap:18px
+      width:min(1080px,calc(100% - 32px)); min-height:74px; margin:auto;
+      display:flex; align-items:center; justify-content:space-between; gap:18px;
     }
-    .brand{display:flex;align-items:center;gap:11px;color:inherit;text-decoration:none;font-weight:750;font-size:15px}
-    .brand img{width:40px;height:40px;border-radius:10px;object-fit:cover;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+    .brand{
+      display:flex; align-items:center; gap:13px; color:inherit; text-decoration:none;
+      font-weight:760; font-size:15px;
+    }
+    .brand-mark{
+      width:40px; height:40px; border-radius:12px; overflow:hidden; flex:0 0 auto;
+      box-shadow:0 6px 16px rgba(0,0,0,.10);
+      border:1px solid rgba(0,0,0,.05);
+      background:#fff;
+    }
+    .brand-mark img{width:100%;height:100%;object-fit:cover;display:block}
+    .brand-copy{display:flex;flex-direction:column;gap:2px}
+    .brand-copy strong{font-size:15px;letter-spacing:-.01em}
+    .brand-copy span{font-size:12px;color:var(--muted);font-weight:600}
     .version-pill{
-      color:var(--muted);font-size:13px;font-weight:700;background:var(--soft);
-      border:1px solid var(--border);padding:7px 11px;border-radius:999px;white-space:nowrap
+      color:#5f6a6d; font-size:13px; font-weight:700;
+      background:linear-gradient(180deg,#ffffff 0%,#f3f6f6 100%);
+      border:1px solid #d7dfdf; padding:8px 13px; border-radius:999px;
+      white-space:nowrap; box-shadow:0 4px 14px rgba(24,45,47,.05);
     }
-    main{
-      width:min(1000px,calc(100% - 32px));margin:auto;padding:72px 0 34px;text-align:center
-    }
+
+    main{width:min(1000px,calc(100% - 32px));margin:auto;padding:66px 0 36px;text-align:center}
     .hero-logo{
-      display:block;margin:0 auto;
-      width:112px;height:112px;border-radius:25px;object-fit:cover;
+      display:block; margin:0 auto;
+      width:112px; height:112px; border-radius:25px; object-fit:cover;
       box-shadow:0 18px 42px rgba(26,62,64,.14)
     }
     .status{
-      display:inline-flex;align-items:center;gap:8px;margin:20px 0 14px;
-      color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase
+      display:inline-flex; align-items:center; gap:8px; margin:20px 0 14px;
+      color:var(--accent); font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase
     }
     .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(21,122,125,.1)}
     h1{margin:0;font-size:clamp(40px,5vw,52px);line-height:1.06;letter-spacing:-.035em}
-    .subtitle{
-      max-width:650px;margin:16px auto 0;color:var(--muted);font-size:16px;line-height:1.65
-    }
+    .subtitle{max-width:650px;margin:16px auto 0;color:var(--muted);font-size:16px;line-height:1.65}
+
     .downloads{
       width:min(820px,100%);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
       gap:16px;margin:36px auto 0;text-align:left
@@ -73,16 +100,35 @@
     .download:active{transform:translateY(1px)}
     .download svg{width:16px;height:16px}
     .meta{margin-top:24px;color:#7a8587;font-size:12px;line-height:1.6}
-    footer{
-      width:min(1000px,calc(100% - 32px));margin:36px auto 0;padding:24px 0 30px;
-      border-top:1px solid rgba(223,230,230,.85);color:#8a9496;font-size:12px;text-align:center
+
+    footer{width:min(1080px,calc(100% - 32px));margin:42px auto 0;padding:0 0 34px}
+    .footer-card{
+      border-top:1px solid rgba(223,230,230,.95);
+      padding-top:24px;
+      display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
     }
+    .footer-left{display:flex;align-items:center;gap:12px;text-align:left}
+    .footer-icon{
+      width:38px;height:38px;border-radius:11px;overflow:hidden;flex:0 0 auto;
+      box-shadow:0 5px 14px rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.05);background:#fff;
+    }
+    .footer-icon img{width:100%;height:100%;object-fit:cover;display:block}
+    .footer-text strong{display:block;font-size:14px;letter-spacing:-.01em}
+    .footer-text span{display:block;margin-top:2px;font-size:12px;color:#7c8789}
+    .footer-right{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+    .footer-link{color:var(--accent);text-decoration:none;font-size:13px;font-weight:700}
+    .footer-copy{color:#8a9496;font-size:12px}
+
     @media(max-width:640px){
-      .header-inner{min-height:64px}
+      .header-inner{min-height:68px}
+      .brand-copy span{display:none}
       main{padding:48px 0 30px}
       .hero-logo{width:96px;height:96px;border-radius:22px}
       .downloads{grid-template-columns:1fr}
       h1{font-size:38px}
+      .footer-card{justify-content:center;text-align:center}
+      .footer-left{justify-content:center;text-align:center;width:100%}
+      .footer-right{justify-content:center;width:100%}
     }
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
   </style>
@@ -91,8 +137,13 @@
   <header>
     <div class="header-inner">
       <a class="brand" href="./" aria-label="Locks Tracker home">
-        <img src="https://i.postimg.cc/3RJH8H5K/lock-release.jpg" alt="Locks Tracker logo">
-        <span>Locks Tracker</span>
+        <div class="brand-mark">
+          <img src="https://i.postimg.cc/3RJH8H5K/lock-release.jpg" alt="Locks Tracker logo">
+        </div>
+        <div class="brand-copy">
+          <strong>Locks Tracker</strong>
+          <span>Official downloads</span>
+        </div>
       </a>
       <div class="version-pill" id="versionPill">Latest release</div>
     </div>
@@ -110,7 +161,7 @@
           <div class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.2 10.6 4v7.3H3V5.2Zm8.6-1.35L21 2.5v8.8h-9.4V3.85ZM3 12.7h7.6V20L3 18.8v-6.1Zm8.6 0H21v8.8l-9.4-1.35V12.7Z"/></svg>
           </div>
-          <div class="copy"><h2>Windows</h2><p>Windows 10 / 11 · 64-bit</p></div>
+          <div class="copy"><h2>Windows</h2><p id="windowsInfo">Windows 10 / 11 · 64-bit</p></div>
         </div>
         <a class="download" id="windowsDownload" href="https://github.com/Sault-Ste-Marie-Locks/Sault-Locks-Tracker-Releases/releases/latest/download/Locks_Tracker_Setup.exe">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
@@ -123,7 +174,7 @@
           <div class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 13.1c0-2.45 2-3.63 2.1-3.69a4.52 4.52 0 0 0-3.56-1.93c-1.5-.16-2.96.9-3.72.9-.78 0-1.95-.88-3.22-.85a4.73 4.73 0 0 0-3.98 2.43c-1.72 2.98-.44 7.37 1.21 9.78.83 1.18 1.79 2.5 3.06 2.45 1.24-.05 1.7-.79 3.2-.79 1.48 0 1.91.79 3.2.76 1.33-.02 2.17-1.18 2.97-2.37a9.75 9.75 0 0 0 1.36-2.78 4.28 4.28 0 0 1-2.62-3.92ZM14.17 5.88A4.36 4.36 0 0 0 15.17 2a4.44 4.44 0 0 0-2.88 1.35 4.18 4.18 0 0 0-1.03 3.76 3.66 3.66 0 0 0 2.91-1.23Z"/></svg>
           </div>
-          <div class="copy"><h2>macOS</h2><p>macOS installer</p></div>
+          <div class="copy"><h2>macOS</h2><p id="macInfo">macOS installer</p></div>
         </div>
         <a class="download" id="macDownload" href="https://github.com/Sault-Ste-Marie-Locks/Sault-Locks-Tracker-Releases/releases/latest/download/Locks_Tracker_Mac_Universal.dmg">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
@@ -135,33 +186,70 @@
     <p class="meta"><span id="currentVersion">Checking latest version…</span></p>
   </main>
 
-  <footer>© <span id="year"></span> Locks Tracker</footer>
+  <footer>
+    <div class="footer-card">
+      <div class="footer-left">
+        <div class="footer-icon">
+          <img src="https://i.postimg.cc/3RJH8H5K/lock-release.jpg" alt="Locks Tracker logo">
+        </div>
+        <div class="footer-text">
+          <strong>Locks Tracker</strong>
+          <span>Official release downloads for Sault Canada Locks</span>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <a class="footer-link" id="releaseLink" href="https://github.com/Sault-Ste-Marie-Locks/Sault-Locks-Tracker-Releases/releases/latest">View release notes</a>
+        <div class="footer-copy">© <span id="year"></span> Locks Tracker</div>
+      </div>
+    </div>
+  </footer>
 
   <script>
     const repo='Sault-Ste-Marie-Locks/Sault-Locks-Tracker-Releases';
     const api=`https://api.github.com/repos/${repo}/releases/latest`;
+    const versionPill=document.getElementById('versionPill');
+    const currentVersion=document.getElementById('currentVersion');
+    const releaseStatus=document.getElementById('releaseStatus');
     document.getElementById('year').textContent=new Date().getFullYear();
 
+    function sizeLabel(bytes){
+      if(!Number.isFinite(bytes)) return '';
+      const mb=bytes/1024/1024;
+      return `${mb.toFixed(mb>=100?0:1)} MB`;
+    }
+
     fetch(api,{headers:{Accept:'application/vnd.github+json'}})
-      .then(r=>{if(!r.ok) throw new Error(`GitHub API ${r.status}`); return r.json();})
+      .then(response=>{
+        if(!response.ok) throw new Error(`GitHub API ${response.status}`);
+        return response.json();
+      })
       .then(release=>{
         const assets=Array.isArray(release.assets)?release.assets:[];
-        const windows=assets.find(a=>a.name.toLowerCase().endsWith('.exe'));
-        const mac=assets.find(a=>a.name.toLowerCase().endsWith('.dmg'));
+        const windows=assets.find(asset=>asset.name.toLowerCase().endsWith('.exe'));
+        const mac=assets.find(asset=>asset.name.toLowerCase().endsWith('.dmg'));
         const version=release.tag_name||release.name||'Latest release';
 
-        document.getElementById('versionPill').textContent=version;
-        document.getElementById('currentVersion').textContent=`Current Version: ${version}`;
-        document.getElementById('releaseStatus').textContent='Latest release';
+        versionPill.textContent=version;
+        currentVersion.textContent=`Current Version: ${version}`;
+        releaseStatus.textContent='Latest release';
 
-        if(windows) document.getElementById('windowsDownload').href=windows.browser_download_url;
-        if(mac) document.getElementById('macDownload').href=mac.browser_download_url;
+        if(release.html_url){
+          document.getElementById('releaseLink').href=release.html_url;
+        }
+        if(windows){
+          document.getElementById('windowsDownload').href=windows.browser_download_url;
+          document.getElementById('windowsInfo').textContent=`Windows 10 / 11 · 64-bit · ${sizeLabel(windows.size)}`;
+        }
+        if(mac){
+          document.getElementById('macDownload').href=mac.browser_download_url;
+          document.getElementById('macInfo').textContent=`macOS installer · ${sizeLabel(mac.size)}`;
+        }
       })
-      .catch(err=>{
-        console.warn('Could not load release metadata:',err);
-        document.getElementById('currentVersion').textContent='Latest release';
+      .catch(()=>{
+        currentVersion.textContent='Latest release';
+        releaseStatus.textContent='Latest release';
       });
   </script>
 </body>
 </html>
-
